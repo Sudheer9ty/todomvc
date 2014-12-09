@@ -37,13 +37,21 @@
 				var fn = this.filters[this.filter];
 				this.filtered = fn ? this.items.filter(fn) : this.items;
 			},
-			newItem: function(title) {
-				title = String(title).trim();
+			newItem: function(recivevalue) {
+				title= String(recivevalue.title).trim();
+				console.log(title);
 				if (title) {
 					var item = {
-						title: title,
+						// title: title,
+						thumbnailurl:recivevalue.thurl,
+						videotargetUrl:recivevalue.vturl,
+						videotargetTitle:recivevalue.vtt,
+						videotargetDuration:recivevalue.vtd,
+						videotargetPublish:recivevalue.vtp,
+						videotargetUrlViews:recivevalue.urlview,
 						completed: false
 					};
+					//var item=recivevalue;
 					this.items.push(item);
 					this.itemsChanged();
 				}

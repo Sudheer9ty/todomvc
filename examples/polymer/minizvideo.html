@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>&lt;google-youtube-video-wall&gt; Demo</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="/bower_components/google-youtube-video-wall/google-youtube-video-wall.html">
+    <link rel="import" href="/bower_components/google-youtube/google-youtube.html">
+
+</head>
+
+
+
+
+<body unresolved>
+    <!-- Please register for your own key! https://developers.google.com/youtube/registering_an_application -->
+    <!-- <google-youtube-video-wall fit
+                               apiKey="AIzaSyAXqZrskeQRPGqnPN1Y8t-Ry7wjBDs0JEU"
+                               wallTitle="Miniz Video"
+                               channelId="UC_x5XG1OV2P6uZZ5FSM9Ttw"
+                               q="polymer"
+                               showSearch>
+
+
+    </google-youtube-video-wall> -->
+    <polymer-element name="miniz-video">
+        <template>
+            <google-youtube-video-wall id="youtubevideolist" fit 
+            apikey="AIzaSyAXqZrskeQRPGqnPN1Y8t-Ry7wjBDs0JEU" wallTitle="Miniz Video" q="pk" showSearch>
+            </google-youtube-video-wall >
+        </template>
+        <script>
+        Polymer();
+        </script>
+    </polymer-element>
+    <miniz-video></miniz-video>
+</body>
+
+</html>

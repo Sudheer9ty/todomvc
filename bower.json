@@ -7,5 +7,25 @@
   },
   "devDependencies": {
     "prefixfree": "91790e8aff6d807cd62018479db2307e1972b92a"
+  },
+  "resolutions": {
+    "core-component-page": "^0.5.0",
+    "core-icons": "^0.5.0",
+    "core-icon": "^0.5.0",
+    "core-iconset": "^0.5.0",
+    "core-meta": "^0.5.0",
+    "core-iconset-svg": "^0.5.0",
+    "font-roboto": "^0.5.0",
+    "paper-button": "^0.5.0",
+    "paper-shadow": "^0.5.0",
+    "paper-ripple": "^0.5.0",
+    "core-selector": "^0.5.0",
+    "core-selection": "^0.5.0",
+    "core-toolbar": "^0.5.0",
+    "core-icon-button": "^0.5.0",
+    "core-media-query": "^0.5.0",
+    "paper-tabs": "^0.5.0",
+    "paper-icon-button": "^0.5.0",
+    "polymer": "^0.5.1"
   }
 }

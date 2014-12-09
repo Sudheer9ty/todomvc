@@ -1,15 +1,32 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="td-input.html">
 
+
 <polymer-element name="td-item" extends="li" attributes="item editing" on-blur="{{commitAction}}">
 	<template>
 		<link rel="stylesheet" href="td-item.css">
 		<div class="view {{ {completed: item.completed, editing: editing} | tokenList }}" hidden?="{{editing}}" on-dblclick="{{editAction}}">
 			<input type="checkbox" class="toggle" checked="{{item.completed}}" on-click="{{itemChangeAction}}">
-			<label>{{item.title}}</label>
+            <label>{{item.title}}</label>
 			<button class="destroy" on-click="{{destroyAction}}"></button>
 		</div>
-		<input is="td-input" id="edit" class="edit" value="{{item.title}}" hidden?="{{!editing}}" on-td-input-commit="{{commitAction}}" on-td-input-cancel="{{cancelAction}}">
+
+		
+		<a href="{{item.videotargetUrl}}" >
+		<span>
+		<img src="{{item.thumbnailurl}}" aria-hidden="true" alt="" width="120" height="90">
+		<span>4:28</span>
+		</span><br>
+		<span>{{item.videotargetTitle}} </span><br>
+        <span >{{item.videotargetDuration}}</span><br>
+        <span ><span >by <span >{{item.videotargetPublish}}</span></span></span>
+        <br>
+        <span >{{item.videotargetUrlViews}}</span>
+		</a>
+	<input is="td-input" id="edit" class="edit" value="{{item.title}}" hidden?="{{!editing}}" on-td-input-commit="{{commitAction}}" on-td-input-cancel="{{cancelAction}}">
+   
+
+
 	</template>
 	<script>
 		(function() {

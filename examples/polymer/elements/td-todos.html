@@ -14,7 +14,7 @@
 				<input is="td-input" id="new-todo" placeholder="What needs to be done?" autofocus on-td-input-commit="{{addTodoAction}}" on-td-input-cancel="{{cancelAddTodoAction}}">
 			</header>
 			<section id="main" hidden?="{{model.items.length == 0}}">
-				<input id="toggle-all" type="checkbox" on-change="{{toggleAllCompletedAction}}" checked="{{model.allCompleted}}">
+				<input id="toggle-all" type="checkbox" on-change="{{ }}" checked="{{model.allCompleted}}">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list" on-td-item-changed="{{itemChangedAction}}" on-td-destroy-item="{{destroyItemAction}}">
 					<template repeat="{{model.filtered}}">
@@ -44,6 +44,7 @@
 		(function() {
 			var ENTER_KEY = 13;
 			var ESC_KEY = 27;
+			//var arr=[];
 			Polymer('td-todos', {
 				modelIdChanged: function() {
 					this.model = document.querySelector('#' + this.modelId);
@@ -54,7 +55,18 @@
 					}
 				},
 				addTodoAction: function() {
-					this.model.newItem(this.$['new-todo'].value);
+					var valuesend = {
+						title:this.$['new-todo'].value,
+						thurl:'https://i.ytimg.com/vi_webp/dloIQJ-gk9U/default.webp',
+						vturl:'https://www.youtube.com/watch?v=dloIQJ-gk9U',
+						vtt:'LOOTERA SHIKAYATEIN',
+						vtd:'-Duration: 4:28.',
+						vtp:'T-Series',
+						urlview:'118,531 views',
+						
+
+					};
+					//this.model.newItem(valuesend);
 					// when polyfilling Object.observe, make sure we update immediately
 					Platform.flush();
 					this.$['new-todo'].value = '';
