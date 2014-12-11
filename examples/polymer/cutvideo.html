@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta name="description" content="youtube and iframe api poc" />
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+ 
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <script>
+
+
+
+    function getFrameID(id) {
+        var elem = document.getElementById(id);
+        if (elem) {
+            if (/^iframe$/i.test(elem.tagName)) return id; //Frame, OK
+            // else: Look for frame
+            var elems = elem.getElementsByTagName("iframe");
+            if (!elems.length) return null; //No iframe found, FAILURE
+            for (var i = 0; i < elems.length; i++) {
+                if (/^https?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com(\/|$)/i.test(elems[i].src)) break;
+            }
+            elem = elems[i]; //The only, or the best iFrame
+            if (elem.id) return elem.id; //Existing ID, return it
+            // else: Create a new ID
+            do { //Keep postfixing `-frame` until the ID is unique
+                id += "-frame";
+            } while (document.getElementById(id));
+            elem.id = id;
+            return id;
+        }
+        // If no element, return null.
+        return null;
+    }
+
+
+
+    // having to create a new class instance again.
+    // $("vid1").ready(function() {
+        var starttime,endtime;
+
+        // Define YT_ready function.
+        // Add function to execute when the API is ready
+        var YT_ready = function() {
+            var onReady_funcs = [],
+                api_isReady = false;
+
+                var frameID = getFrameID("vid1");
+                if (frameID) { //If the frame exists
+                    player = new YT.Player(frameID, {
+                        events: {
+                            "onStateChange": stopCycle,
+                            'onReady': onPlayerReady
+                        }
+                    });
+                }
+
+        };
+
+
+        // Example: function stopCycle, bound to onStateChange
+        function stopCycle(event) {
+            // alert("onStateChange has fired!\nNew state:" + event.data);
+        }
+
+
+        // This function will be called when the API is fully loaded
+        function onYouTubePlayerAPIReady() {
+            YT_ready(true)
+        }
+
+        function gettime() {
+            // alert(player.getCurrentTime());
+            return player.getCurrentTime();
+        }
+
+        function onPlayerReady(){
+          $("#endtimebtn").click(function() {
+              $("#endtime").html(gettime());
+          });
+
+          $("#starttimebtn").click(function() {
+              $("#starttime").html(gettime());
+          });
+        }
+
+        onYouTubePlayerAPIReady();
+
+        // Load YouTube Frame API
+        (function() { // Closure, to not leak to the scope
+            var s = document.createElement("script");
+            s.src = (location.protocol == 'https:' ? 'https' : 'http') + "://www.youtube.com/player_api";
+            var before = document.getElementsByTagName("script")[0];
+            before.parentNode.insertBefore(s, before);
+        })();
+
+    // });
+    </script>
+</head>
+ 
+<body>
+    <div>
+    <iframe id="vid1" width="560" height="315" src="https://www.youtube.com/embed/XxU1B54LRGs?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id="starttime"></div>
+    <input type="button" value="start here" id="starttimebtn">
+    <div id="endtime"></div>
+ 
+    <input type="button" value="end here" id="endtimebtn">
+ 
+ 
+</body>
+ 
+</html>
