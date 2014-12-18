@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>&lt;google-youtube-video-wall&gt; Demo</title>
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
-    <link rel="import" href="elements/minizindex.html">
+    <link rel="import" href="/bower_components/app-router/app-router.html">
+    <!-- <link rel="import" href="elements/minizindex.html"> -->
     
    
 
@@ -36,7 +37,17 @@
         </script>
     </polymer-element>
     <miniz-video></miniz-video> -->
-    <miniz-app></miniz-app>
+    <app-router>
+    <app-route path="/minizwall" import="elements/miniz/miniz-wall.html" 
+     ></app-route>
+    
+    <app-route path="/dashboard" import="elements/miniz/dash-board.html" 
+    ></app-route>
+    </app-router>
+    <script>
+  document.querySelector('app-router').go('/minizwall');
+  //document.querySelector('app-router').go('/goal');
+</script>
 </body>
 
 </html>

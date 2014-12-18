@@ -75,7 +75,7 @@
       </div> -->
       <div class="content">
         <app-router mode="hash">
-          <app-route path="/miniz/" import="/miniz/demo.html" element="google-youtube-video-wall"></app-route>
+          <app-route path="/home" import="/miniz/demo.html" element="google-youtube-video-wall"></app-route>
           <!-- <app-route path="/questions/:id" import="/elements/questions/view.html" element="qa-view"></app-route> -->
         </app-router>
       </div>
@@ -99,6 +99,9 @@
       // }
     });
 
+document.querySelector('app-router').go('/home');
+
   })();
+
   </script>
 </polymer-element>
