@@ -38,14 +38,14 @@
     </polymer-element>
     <miniz-video></miniz-video> -->
     <app-router>
-    <app-route path="/minizwall" import="elements/miniz/miniz-wall.html" 
-     ></app-route>
+    <app-route path="/minizwall" import="elements/miniz/miniz-wall.html"></app-route>
     
-    <app-route path="/dashboard" import="elements/miniz/dash-board.html" 
-    ></app-route>
-    </app-router>
+    <app-route path="/dashboard" import="elements/miniz/dash-board.html"></app-route>
+    <!-- <app-route path="/minizwall" redirect="/dashboard"></app-router> -->
     <script>
   document.querySelector('app-router').go('/minizwall');
+   //document.querySelector('app-router').go('/dashboard');
+
   //document.querySelector('app-router').go('/goal');
 </script>
 </body>

@@ -1,0 +1,126 @@
+<DOCUMENT <!DOCTYPE html>
+<html>
+<head>
+	<title>Slect Video</title>
+	<script src="../webcomponentsjs/webcomponents.min.js"></script>
+
+	 <script src="https://www.youtube.com/iframe_api"></script>
+	 <link rel="import" href="/bower_components/polymer/polymer.html">
+	 <style></style>>
+</head>
+<body>
+<polymer-element name="miniz-video">
+<template>
+<div>
+<iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/XxU1B54LRGs?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<div id="starttime"></div>
+    <input type="button" value="start here" id="starttimebtn" onclick="{{startvideo}}">
+    <div id="endtime"></div>
+    <input type="button" value="end here" id="endtimebtn" onclick="{{stopvideo}}">
+</template>
+<script>
+	Polymer('miniz-video',{
+
+		
+		ready:function(){
+			onYouTubePlayerAPIReady();
+		},
+		getFrameId:function(id){
+			var elem = document.getElementById(id);
+        if (elem) {
+            if (/^iframe$/i.test(elem.tagName)) return id; //Frame, OK
+            // else: Look for frame
+            var elems = elem.getElementsByTagName("iframe");
+            if (!elems.length) return null; //No iframe found, FAILURE
+            for (var i = 0; i < elems.length; i++) {
+                if (/^https?:\/\/(?:www\.)?youtube(?:-nocookie)?\.com(\/|$)/i.test(elems[i].src)) break;
+            }
+            elem = elems[i]; //The only, or the best iFrame
+            if (elem.id) return elem.id; //Existing ID, return it
+            // else: Create a new ID
+            do { //Keep postfixing `-frame` until the ID is unique
+                id += "-frame";
+            } while (document.getElementById(id));
+            elem.id = id;
+            return id;
+        }
+        // If no element, return null.
+        return null;
+
+		},
+		// startvideo:function(){
+
+		// },
+		// stopvideo:function(){
+
+
+		// }
+
+		onPlayerReady:function(){
+
+          this.$['endtimebtn'].click(function() {
+            this.$['starttimebtn'].html(gettime());
+          });
+
+          this.$['starttimebtn'].click(function() {
+            this.$['starttime'].html(gettime());
+          });
+        },
+        // ready:function(){
+        // 	var onready =[];
+        // 	isready=false;
+        // 	var f_id = getFrameId('video');
+        // 	if(f_id)
+        // 	player = new YT.Player('f_id',
+        // 		events:{
+
+        // 		});
+
+
+        
+        gettime:function(){
+        	return player.getCurrentTime();
+
+        },
+
+        YT_ready:function(){
+        	var onReady_funcs = [],
+                api_isReady = false;
+
+                var frameID = getFrameID("vid1");
+                if (frameID) { //If the frame exists
+                    player = new YT.Player(frameID, {
+                        events: {
+                            "onStateChange": stopCycle,
+                            'onReady': onPlayerReady
+                        }
+                    });
+                }
+
+        },
+        stopCycle:function(events)
+        {
+
+        },
+        onYouTubePlayerAPIReady:function()
+        {
+        	YT_ready(true);
+
+        },
+        apiLoad:function(){(function() { // Closure, to not leak to the scope
+            var s = document.createElement("script");
+            s.src = (location.protocol == 'https:' ? 'https' : 'http') + "://www.youtube.com/player_api";
+            var before = document.getElementsByTagName("script")[0];
+            before.parentNode.insertBefore(s, before);
+        })();
+    }
+
+
+
+	});
+</script>
+</polymer-element>
+<miniz-video></miniz-video>
+</body>
+</html>
