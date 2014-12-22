@@ -6,6 +6,10 @@
     <title>&lt;google-youtube-video-wall&gt; Demo</title>
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="/bower_components/app-router/app-router.html">
+    <!-- <link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="/bower_components/core-icons/social-icons.html"> -->
+    
     <!-- <link rel="import" href="elements/minizindex.html"> -->
     
    
@@ -16,37 +20,32 @@
 
 
 <body unresolved>
-    <!-- Please register for your own key! https://developers.google.com/youtube/registering_an_application -->
-    <!-- <google-youtube-video-wall fit
-                               apiKey="AIzaSyAXqZrskeQRPGqnPN1Y8t-Ry7wjBDs0JEU"
-                               wallTitle="Miniz Video"
-                               channelId="UC_x5XG1OV2P6uZZ5FSM9Ttw"
-                               q="polymer"
-                               showSearch>
+<!-- <polymer-element name="miniz-app">
+  <template>
+    style>
+      :host {
+        display: block;
+      }
+    </style
 
 
-    </google-youtube-video-wall> -->
-    <!-- <polymer-element name="miniz-video">
-        <template>
-            <google-youtube-video-wall id="youtubevideolist" fit 
-            apikey="AIzaSyAXqZrskeQRPGqnPN1Y8t-Ry7wjBDs0JEU" wallTitle="Miniz Video" q="pk" showSearch>
-            </google-youtube-video-wall >
-        </template>
-        <script>
-        Polymer();
-        </script>
-    </polymer-element>
-    <miniz-video></miniz-video> -->
+  </template>
+  <script>
+    Polymer('', {
+      
+    });
+  </script>
+</polymer-element> -->
+    
+    
     <app-router>
     <app-route path="/minizwall" import="elements/miniz/miniz-wall.html"></app-route>
     
     <app-route path="/dashboard" import="elements/miniz/dash-board.html"></app-route>
-    <!-- <app-route path="/minizwall" redirect="/dashboard"></app-router> -->
+    
     <script>
   document.querySelector('app-router').go('/minizwall');
    //document.querySelector('app-router').go('/dashboard');
-
-  //document.querySelector('app-router').go('/goal');
 </script>
 </body>
 
